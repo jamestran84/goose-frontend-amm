@@ -20,6 +20,7 @@ import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import Swap from './Swap'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
+import MonogramGenerator from './MonogramGenerator'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
@@ -136,6 +137,7 @@ export default function App() {
                       <Route exact strict path='/remove/:currencyIdA/:currencyIdB' component={RemoveLiquidity} />
                       <Route exact strict path='/migrate/v1' component={MigrateV1} />
                       <Route exact strict path='/migrate/v1/:address' component={MigrateV1Exchange} />
+                      <Route exact strict path='/monogram' component={MonogramGenerator} />
                       <Route component={RedirectPathToSwapOnly} />
                     </Switch>
                   </Web3ReactManager>
