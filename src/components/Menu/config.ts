@@ -22,6 +22,21 @@ const config: MenuEntry[] = [
     ]
   },
   {
+    label: 'Monogram Studio',
+    icon: 'NftIcon',
+    initialOpenState: true,
+    items: [
+      {
+        label: 'Lumi Studio',
+        href: '/lumi'
+      },
+      {
+        label: 'Classic Generator',
+        href: '/monogram'
+      }
+    ]
+  },
+  {
     label: 'Farms',
     icon: 'FarmIcon',
     href: 'https://www.goosedefi.com/farms'
