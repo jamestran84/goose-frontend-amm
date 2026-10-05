@@ -46,15 +46,17 @@ interface Palette {
   secondary: string
   rule: string
   caption: string
+  /** Colour of the soft light bloom in the "Lumi" composition. Always a glow, never a shadow. */
+  glow: string
 }
 
 const PALETTES: Record<PaletteKey, Palette> = {
-  boneInk: { label: 'Bone & Ink', bg: LUMI.bone, primary: LUMI.ink, secondary: LUMI.terracotta, rule: LUMI.border, caption: LUMI.muted },
-  terracotta: { label: 'Terracotta', bg: LUMI.terracotta, primary: LUMI.bone, secondary: LUMI.blush, rule: LUMI.clay, caption: LUMI.peach },
-  blushCocoa: { label: 'Blush & Cocoa', bg: LUMI.blush, primary: LUMI.cocoa, secondary: LUMI.clay, rule: LUMI.peach, caption: LUMI.tan },
-  inkGold: { label: 'Ink & Gold', bg: LUMI.ink, primary: LUMI.bone, secondary: LUMI.gold, rule: '#3A3531', caption: '#9A928A' },
-  clayCream: { label: 'Clay & Cream', bg: LUMI.peach, primary: LUMI.sienna, secondary: LUMI.charcoal, rule: '#E0AE92', caption: LUMI.cocoa },
-  charcoalClay: { label: 'Charcoal & Clay', bg: LUMI.charcoal, primary: LUMI.clay, secondary: LUMI.bone, rule: '#5F5651', caption: LUMI.tan },
+  boneInk: { label: 'Bone & Ink', bg: LUMI.bone, primary: LUMI.ink, secondary: LUMI.terracotta, rule: LUMI.border, caption: LUMI.muted, glow: LUMI.clay },
+  terracotta: { label: 'Terracotta', bg: LUMI.terracotta, primary: LUMI.bone, secondary: LUMI.blush, rule: LUMI.clay, caption: LUMI.peach, glow: '#FFF3E6' },
+  blushCocoa: { label: 'Blush & Cocoa', bg: LUMI.blush, primary: LUMI.cocoa, secondary: LUMI.clay, rule: LUMI.peach, caption: LUMI.tan, glow: '#FFFFFF' },
+  inkGold: { label: 'Ink & Gold', bg: LUMI.ink, primary: LUMI.bone, secondary: LUMI.gold, rule: '#3A3531', caption: '#9A928A', glow: LUMI.gold },
+  clayCream: { label: 'Clay & Cream', bg: LUMI.peach, primary: LUMI.sienna, secondary: LUMI.charcoal, rule: '#E0AE92', caption: LUMI.cocoa, glow: '#FFF8F0' },
+  charcoalClay: { label: 'Charcoal & Clay', bg: LUMI.charcoal, primary: LUMI.clay, secondary: LUMI.bone, rule: '#5F5651', caption: LUMI.tan, glow: LUMI.clay },
 }
 
 // ---------------------------------------------------------------------------
@@ -587,9 +589,9 @@ function renderComposition(ctx: RenderCtx) {
         <>
           <defs>
             <radialGradient id="lumi-bloom" cx="50%" cy="46%" r="52%">
-              <stop offset="0%" stopColor={pal.secondary} stopOpacity={0.42} />
-              <stop offset="55%" stopColor={pal.secondary} stopOpacity={0.1} />
-              <stop offset="100%" stopColor={pal.secondary} stopOpacity={0} />
+              <stop offset="0%" stopColor={pal.glow} stopOpacity={0.55} />
+              <stop offset="55%" stopColor={pal.glow} stopOpacity={0.14} />
+              <stop offset="100%" stopColor={pal.glow} stopOpacity={0} />
             </radialGradient>
           </defs>
           <rect x={0} y={0} width={S} height={S} fill="url(#lumi-bloom)" />
